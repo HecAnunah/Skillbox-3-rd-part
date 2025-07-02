@@ -1,0 +1,30 @@
+{
+    // Скрыть мусорные и системные файлы
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.git": true,
+        "**/*.code-workspace": true
+        // "**/*.log": true,
+        // "**/.DS_Store": true
+    },
+    // Включить автосохранение
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000, // через 1 секунду после изменения
+    // Форматировать код при сохранении файла
+    // "editor.formatOnSave": true,  // ты включил ниже, здесь можно убрать
+    // Устанавливаем отступ в 4 пробела
+    "editor.tabSize": 4,
+    // Показывать мини-карту справа
+    // "editor.minimap.enabled": true,
+    // Использовать систему Python из виртуального окружения по умолчанию
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    // Подсказки по импортам и автодополнение
+    "python.analysis.autoImportCompletions": true,
+    // Предупреждать об ошибках в коде (анализатор)
+    "python.analysis.typeCheckingMode": "basic",
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.defaultInterpreterPath": ".venv/bin/python"
+}
