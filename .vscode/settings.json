@@ -17,7 +17,7 @@
     // Показывать мини-карту справа
     // "editor.minimap.enabled": true,
     // Использовать систему Python из виртуального окружения по умолчанию
-    "python.defaultInterpreterPath": ".venv/bin/python",
+    "python.defaultInterpreterPath": "venv/bin/python",
     // Подсказки по импортам и автодополнение
     "python.analysis.autoImportCompletions": true,
     // Предупреждать об ошибках в коде (анализатор)
@@ -26,5 +26,10 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
-    "python.defaultInterpreterPath": ".venv/bin/python"
+    // Использовать Black для автоформатирования Python-кода
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    // Уровень анализа типов: "off", "basic" или "strict"
+    "python.analysis.typeCheckingMode": "basic"
 }
