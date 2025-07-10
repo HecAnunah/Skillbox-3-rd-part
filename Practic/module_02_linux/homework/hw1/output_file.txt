@@ -1,0 +1,51 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0  21656 11768 ?        Ss   12:11   0:00 /sbin/init
+root           2  0.0  0.0   3060  1536 ?        Sl   12:11   0:00 /init
+root           7  0.0  0.0   3100  1976 ?        Sl   12:11   0:00 plan9 --control-socket 7 --log-level 4 --server-fd 8 --pipe-fd 10 --log-truncate
+root          53  0.0  0.0  50352 15104 ?        S<s  12:11   0:00 /usr/lib/systemd/systemd-journald
+root          99  0.0  0.0  25184  6144 ?        Ss   12:11   0:00 /usr/lib/systemd/systemd-udevd
+systemd+     115  0.0  0.0  21452 12544 ?        Ss   12:11   0:00 /usr/lib/systemd/systemd-resolved
+systemd+     118  0.0  0.0  91020  7424 ?        Ssl  12:11   0:00 /usr/lib/systemd/systemd-timesyncd
+root         214  0.0  0.0   4236  2816 ?        Ss   12:11   0:00 /usr/sbin/cron -f -P
+message+     215  0.0  0.0   9652  5120 ?        Ss   12:11   0:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+redis        222  0.1  0.0  71052 13312 ?        Ssl  12:11   0:24 /usr/bin/redis-server 127.0.0.1:6379
+root         229  0.0  0.0  17960  8448 ?        Ss   12:11   0:00 /usr/lib/systemd/systemd-logind
+root         231  0.0  0.0 1756096 13312 ?       Ssl  12:11   0:00 /usr/libexec/wsl-pro-service -vv
+syslog       246  0.0  0.0 222508  5120 ?        Ssl  12:11   0:00 /usr/sbin/rsyslogd -n -iNONE
+root         252  0.0  0.0   3160  1792 hvc0     Ss+  12:11   0:00 /sbin/agetty -o -p -- \u --noclear --keep-baud - 115200,38400,9600 vt220
+root         255  0.0  0.0   3116  1792 tty1     Ss+  12:11   0:00 /sbin/agetty -o -p -- \u --noclear - linux
+root         266  0.0  0.1 107028 22784 ?        Ssl  12:11   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         358  0.0  0.0   6820  4608 pts/1    Ss   12:11   0:00 /bin/login -f
+root         377  0.0  0.0   3064   768 ?        Ss   12:11   0:00 /init
+root         378  0.0  0.0   3080   768 ?        S    12:11   0:00 /init
+zakhar       379  0.0  0.0   2800  1536 pts/0    Ss+  12:11   0:00 sh -c "$VSCODE_WSL_EXT_LOCATION/scripts/wslServer.sh" 2901c5ac6db8a986a5666c3af51ff804d05af0d4 stable code-server .vscode-server --host=127.0.0.1 --port=0 --connection-token=1256302164-2758181568-3332884968-1832546165 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --disable-telemetry --telemetry-level=off
+zakhar       380  0.0  0.0   2800  1792 pts/0    S+   12:11   0:00 sh /mnt/c/Users/User/.vscode/extensions/ms-vscode-remote.remote-wsl-0.99.0/scripts/wslServer.sh 2901c5ac6db8a986a5666c3af51ff804d05af0d4 stable code-server .vscode-server --host=127.0.0.1 --port=0 --connection-token=1256302164-2758181568-3332884968-1832546165 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --disable-telemetry --telemetry-level=off
+zakhar       385  0.0  0.0   2800  1792 pts/0    S+   12:11   0:00 sh /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/bin/code-server --host=127.0.0.1 --port=0 --connection-token=1256302164-2758181568-3332884968-1832546165 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --disable-telemetry --telemetry-level=off
+zakhar       389  0.1  1.0 11886096 165760 pts/0 Sl+  12:11   0:17 /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/node /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/server-main.js --host=127.0.0.1 --port=0 --connection-token=1256302164-2758181568-3332884968-1832546165 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --disable-telemetry --telemetry-level=off
+zakhar       421  0.0  0.0  20296 11264 ?        Ss   12:11   0:00 /usr/lib/systemd/systemd --user
+zakhar       422  0.0  0.0  21144  3516 ?        S    12:11   0:00 (sd-pam)
+zakhar       442  0.0  0.0   6072  4608 pts/1    S+   12:11   0:00 -bash
+zakhar       460  0.1  0.4 1177644 77064 pts/0   Rl+  12:11   0:21 /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/node /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/bootstrap-fork --type=ptyHost --logsPath /home/zakhar/.vscode-server/data/logs/20250709T121106
+root        3293  0.0  0.0   3068   768 ?        Ss   12:17   0:00 /init
+root        3294  0.0  0.0   3084   768 ?        S    12:17   0:00 /init
+zakhar      3295  0.0  0.3 1016240 59604 pts/2   Ssl+ 12:17   0:01 /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/node -e const net = require('net'); process.stdin.pause(); const client = net.createConnection({ host: '127.0.0.1', port: 33203 }, () => { client.pipe(process.stdout); process.stdin.pipe(client); }); client.on('close', function (hadError) { console.error(hadError ? 'Remote close with error' : 'Remote close'); process.exit(hadError ? 1 : 0); }); client.on('error', function (err) { process.stderr.write(err && (err.stack || err.message) || String(err)); });
+root        3302  0.0  0.0   3068   768 ?        Ss   12:17   0:00 /init
+root        3303  0.0  0.0   3084   768 ?        S    12:17   0:01 /init
+zakhar      3304  0.0  0.3 1328548 62612 pts/0   Sl+  12:17   0:01 /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/node /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/bootstrap-fork --type=fileWatcher
+zakhar      3305  0.0  0.3 1014328 56824 pts/3   Ssl+ 12:17   0:03 /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/node -e const net = require('net'); process.stdin.pause(); const client = net.createConnection({ host: '127.0.0.1', port: 33203 }, () => { client.pipe(process.stdout); process.stdin.pipe(client); }); client.on('close', function (hadError) { console.error(hadError ? 'Remote close with error' : 'Remote close'); process.exit(hadError ? 1 : 0); }); client.on('error', function (err) { process.stderr.write(err && (err.stack || err.message) || String(err)); });
+zakhar      3325  1.5  1.7 33556340 286224 pts/0 Sl+  12:17   4:07 /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/node --dns-result-order=ipv4first /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+zakhar      3399  0.0  0.0   6196  5376 pts/4    Ss+  12:17   0:00 /bin/bash --init-file /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+zakhar      3443  0.2  5.4 14464212 867884 pts/0 Sl+  12:17   0:42 /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/node /home/zakhar/.vscode-server/extensions/ms-python.vscode-pylance-2025.6.2/dist/server.bundle.js --cancellationReceive=file:2f3a23b9f850e3ba421d855ff078c479686007c0de --node-ipc --clientProcessId=3325
+zakhar      3658  0.0  0.2 276144 47768 pts/0    Sl+  12:18   0:00 /home/zakhar/Python/Skillbox third part/venv/bin/python /home/zakhar/.vscode-server/extensions/ms-python.black-formatter-2025.2.0/bundled/tool/lsp_server.py --stdio
+zakhar      4477  0.0  0.0   6196  5376 pts/5    Ss+  12:22   0:00 /bin/bash --init-file /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+zakhar      6450  0.0  0.0   6196  5376 pts/6    Ss   12:32   0:00 /bin/bash --init-file /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+zakhar      6611  0.0  0.0   6088  5120 pts/7    Ss+  12:32   0:00 /bin/bash
+polkitd     8603  0.0  0.0 308164  7680 ?        Ssl  12:39   0:00 /usr/lib/polkit-1/polkitd --no-debug
+root       16421  0.0  0.0   3068   768 ?        Ss   13:20   0:00 /init
+root       16422  0.0  0.0   3084  1024 ?        S    13:20   0:00 /init
+zakhar     16429  0.0  0.0   6072  5120 pts/8    Ss+  13:20   0:00 -bash
+zakhar     51281  0.0  0.3 1015780 62796 pts/0   Sl+  16:31   0:00 /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/node /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/extensions/json-language-features/server/dist/node/jsonServerMain --node-ipc --clientProcessId=3325
+zakhar     54076  0.0  0.0   2800  1536 pts/0    S+   16:46   0:00 /bin/sh -c "/home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/vs/base/node/cpuUsage.sh" 6450
+zakhar     54077  0.0  0.0   4752  3328 pts/0    S+   16:46   0:00 /bin/bash /home/zakhar/.vscode-server/bin/2901c5ac6db8a986a5666c3af51ff804d05af0d4/out/vs/base/node/cpuUsage.sh 6450
+zakhar     54080  0.0  0.0   3124  1792 pts/0    S+   16:46   0:00 sleep 1
+zakhar     54082  0.0  0.0   8284  4096 pts/6    R+   16:46   0:00 ps aux
