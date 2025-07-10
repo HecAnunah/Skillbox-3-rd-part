@@ -20,9 +20,9 @@ app = Flask(__name__)
 
 @app.route("/max_number/<path:numbers>")
 def max_number(numbers: int):
-    num_lst = numbers.split('/')
+    num_lst = numbers.split("/")
     max_number = max(num_lst)
-    return f'Максимальное число {max_number}'
+    return f"Максимальное число {max_number}"
 
 
 if __name__ == "__main__":
