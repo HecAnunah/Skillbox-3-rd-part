@@ -5,7 +5,7 @@ def decrypt(encryption: str) -> str:
     result: list = []
     dots: int = 0
     for symbol in encryption:
-        if symbol != '.':
+        if symbol != ".":
             result.append(symbol)
             dots = 0
             continue
@@ -15,10 +15,10 @@ def decrypt(encryption: str) -> str:
             result.pop()
             dots = 0
 
-    return ''.join(result)
+    return "".join(result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data: str = sys.stdin.read()
     decryption: str = decrypt(data)
     print(decryption)
