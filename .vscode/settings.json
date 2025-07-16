@@ -31,5 +31,14 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     // Уровень анализа типов: "off", "basic" или "strict"
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./3_CI_parts1",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true
 }

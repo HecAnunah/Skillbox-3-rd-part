@@ -1,6 +1,6 @@
 import unittest
 
-from module_03_ci_culture_beginning.materials.previous_hw_test.max_number_app import app
+from previous_hw_test.max_number_app import app
 
 
 class TestMaxNumberApp(unittest.TestCase):
