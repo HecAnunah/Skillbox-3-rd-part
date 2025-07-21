@@ -1,29 +1,36 @@
-enter_test_word = [
-    "абра-кадабра.",
-    "абраа..-кадабра",
-    "абраа..-.кадабра",
-    "абра....кадабра",
-    "абрау...-кадабра",
-    "абра........",
-    "абр......a.",
-    "1..2.3",
-    ".",
-    "1.......................",
-]
+from urllib.parse import unquote_plus
+from flask import Flask, request
+from flask_wtf import FlaskForm
+from wtforms import IntegerField, StringField
+from wtforms.validators import InputRequired, Email, NumberRange
+
+app = Flask(__name__)
 
 
-def even_odd(enter_list):
-    even_list = []
-    odd_list = []
-    for word in enter_list:
-        if word.count(".") % 2 == 0:
-            even_list.append(word)
-            continue
-        odd_list.append(word)
-    return even_list, odd_list
+class RegistrationForm(FlaskForm):
+    email = StringField(validators=[InputRequired(), Email()])
+    phone = IntegerField(
+        validators=[InputRequired(), NumberRange(min=1000000000, max=99999999999)]
+    )
+    name = StringField(validators=[InputRequired()])
+    address = StringField(validators=[InputRequired()])
+    index = IntegerField()
+    comment = StringField()
 
 
-even_lst, odd_lst = even_odd(enter_test_word)
+@app.route("/registration", methods=["POST"])
+def registration():
+    form = RegistrationForm()
+    print("REQUEST FORM:", request.form)  # все поля которые пришли от пользователя
 
-print(even_lst.split())
-print(odd_lst)
+    if form.validate_on_submit():
+        email, phone = form.email, form.phone.data
+
+        return f"Successfully registered user {email} with phone +7{phone}"
+
+    return f"Invalid input, {form.errors}", 400
+
+
+if __name__ == "__main__":
+    app.config["WTF_CSRF_ENABLED"] = False
+    app.run(debug=True)
