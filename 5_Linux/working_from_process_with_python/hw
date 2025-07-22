@@ -1,0 +1,47 @@
+import sys
+import subprocess
+import shlex
+import json
+
+
+def run_programm():
+    result = subprocess.run(
+        ["python3", "test_print.py"],
+        stderr=sys.stderr,
+        stdout=sys.stderr,
+        input=b"Something i write",
+    )
+    return result
+
+
+def run_hw_url():
+    command_string = (
+        'curl -i -H "Accept: application/json" -X GET https://api.ipify.org?format=json'
+    )
+    tokinized_string = shlex.split(command_string)
+    sub_run = subprocess.run(tokinized_string, capture_output=True)
+    result = sub_run.stdout.decode()
+    result_split = result.split("\r\n\r\n", 1)
+    
+    data_json = json.loads(result_split[1])
+
+    return data_json['ip']
+
+def run_ps_a():
+    command_string = (
+        'ps -A'
+    )
+    tokinized_string = shlex.split(command_string)
+    sub_run = subprocess.run(tokinized_string, capture_output=True)
+    result_lines = sub_run.stdout.decode().splitlines()
+    non_empty_line = [line for line in result_lines if line.split()]
+
+    # Убираем заголовок
+    result = non_empty_line[1:]
+
+    print(len(result))
+
+if __name__ == "__main__":
+    # run_programm()
+    # run_hw_url()
+    run_ps_a()

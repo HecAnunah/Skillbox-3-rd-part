@@ -8,21 +8,27 @@
 /ps?arg=a&arg=u&arg=x
 """
 
+from typing import List
+from click import command
 from flask import Flask, request
 import subprocess
+import shlex
 
 app = Flask(__name__)
 
 
 @app.route("/ps", methods=["GET"])
 def ps() -> str:
-    allowed_args = {"a", "u", "x", "-f", "-e"}
     try:
-        get_args = request.args.getlist("arg", type=str)
-        if not all(arg in allowed_args for arg in get_args):
-            return "❌ Недопустимый аргумент."
+        get_args: List[str] = request.args.getlist("arg", type=str)
+        command = f"ps"
 
-        result = subprocess.run(["ps"] + get_args, capture_output=True, text=True)
+        result = subprocess.run(
+            [command] + [arg for arg in get_args], capture_output=True, text=True
+        )
+        if result.returncode != 0:
+            return "Something whent wrong", 500
+
         return f"<pre>{result.stdout.strip()}</pre>"
     except Exception as e:
         return f"ERROR: {e}"
