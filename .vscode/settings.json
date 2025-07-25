@@ -35,7 +35,7 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "./Practic",
+        "./test",
         "-p",
         "test_*.py"
     ],
