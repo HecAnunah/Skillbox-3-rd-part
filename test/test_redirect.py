@@ -1,5 +1,5 @@
 import unittest
-from block_errors import Redirect
+from redirect import Redirect
 import io
 import sys
 

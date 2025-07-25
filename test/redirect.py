@@ -46,3 +46,8 @@ class Redirect:
 
         if self.stderr:
             return True
+
+with open('out.txt', 'w', encoding='utf-8') as f1, open('err.txt', 'w', encoding='utf-8') as f2:
+    with Redirect(stdout=f1, stderr=f2):
+        print('In outoput')
+        raise ValueError('in Err 4')
