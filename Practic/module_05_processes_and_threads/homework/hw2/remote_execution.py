@@ -22,12 +22,13 @@ class CodeForm(FlaskForm):
 
 def run_python_code_in_subproccess(code: str, timeout: int):
     cmd = ["prlimit", "--nproc=1:1", "python3", "-c", code]
-    proc = subprocess.Popen(
-        cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE, text=True
-    )
     try:
+        proc = subprocess.Popen(
+            cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE, text=True
+        )
         stdout, stderr = proc.communicate(timeout=timeout)
-        return stdout or stderr
+        print(f" TEST {type(stdout)}")  # Проверка на то что получаем - байты или строку
+        return stdout if stdout else stderr
     except subprocess.TimeoutExpired:
         proc.kill()
         return f"Ошибка: время выполнения кода истякло."
@@ -45,7 +46,9 @@ def run_code():
         code = str(form.code.data)
         timeout = int(form.timeout.data)
         result = run_python_code_in_subproccess(code, timeout)
-        return f"{result}"
+
+        return f"Result : {result}"
+
     return "Ошибка: данные невалидны", 400
 
 
