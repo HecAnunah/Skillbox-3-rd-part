@@ -2,12 +2,26 @@ import logging
 import time
 
 import requests
+
+# Без этого импорта не будет работать наследования в логировании: utils.http_utils
 import logger
 
 
 logger = logging.getLogger('utils.http_utils')
 logger.setLevel(logging.INFO)
-print(logger) # Смена родителя в логгере по имени
+print(logger.parent) # Смена родителя в логгере по имени
+print('*' * 40)
+print("Эффективный уровень:", logging.getLevelName(logger.getEffectiveLevel()))
+print("Handlers текущего логгера:", logger.handlers)
+print("Наследует обработчики?", logger.propagate)
+print("Родитель логгера:", logger.parent)
+print("Имя родителя:", logger.parent.name)
+print("Handlers родителя:", logger.parent.handlers)
+
+
+
+
+
 
 GET_IP_URL = 'https://api.ipify.org?format=json'
 
