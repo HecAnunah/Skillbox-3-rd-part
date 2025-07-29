@@ -16,3 +16,4 @@ ArithmeticError, ZeroDivisionError, FloatingPointError и OverflowError
 перехватывая InternalServerError ,
 остальные классы ошибок можно обрабатывать напрямую.
 """
+Test

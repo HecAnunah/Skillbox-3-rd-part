@@ -40,5 +40,10 @@
         "test_*.py"
     ],
     "python.testing.pytestEnabled": false,
-    "python.testing.unittestEnabled": true
+    "python.testing.unittestEnabled": true,
+    
+    // Отключаем автоактивацию venv 
+    "python.terminal.activateEnvironment": true,
+    // 👇 Вот это отвечает за директорию терминала при запуске
+    // "terminal.integrated.cwd": "/home/zakhar/Python/Skillbox_third_part/Practic"
 }
