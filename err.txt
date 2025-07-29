@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/home/zakhar/Python/Skillbox_third_part/test/redirect.py", line 53, in <module>
-    raise ValueError('in Err 4')
-ValueError: in Err 4

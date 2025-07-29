@@ -15,6 +15,7 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
 
 Примечание: гарантируется, что все значения, хранящиеся в бинарном дереве уникальны
 """
+
 import itertools
 import logging
 import random
@@ -56,7 +57,7 @@ def walk(root: BinaryTreeNode):
             queue.append(node.right)
 
 
-counter = itertools.count(random.randint(1, 10 ** 6))
+counter = itertools.count(random.randint(1, 10**6))
 
 
 def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
@@ -71,7 +72,48 @@ def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
 
 
 def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
-    pass
+    nodes = {}
+    children_map = {}
+    visiting_order = []
+
+    with open(path_to_log_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if "Visiting" in line:
+                # Извлекаем значение узла
+                val = int(line.split("[")[1].split("]")[0])
+                visiting_order.append(val)
+                if val not in nodes:
+                    nodes[val] = BinaryTreeNode(val)
+            elif "left is not empty" in line or "right is not empty" in line:
+                parts = line.split("<BinaryTreeNode[")
+                parent_val = int(parts[1].split("]")[0])
+                child_val = int(parts[2].split("]")[0])
+
+                if parent_val not in nodes:
+                    nodes[parent_val] = BinaryTreeNode(parent_val)
+                if child_val not in nodes:
+                    nodes[child_val] = BinaryTreeNode(child_val)
+
+                if parent_val not in children_map:
+                    children_map[parent_val] = [None, None]
+
+                if "left" in line:
+                    children_map[parent_val][0] = child_val
+                else:
+                    children_map[parent_val][1] = child_val
+
+    # Восстанавливаем связи
+    for parent_val, (left_val, right_val) in children_map.items():
+        parent = nodes[parent_val]
+        if left_val:
+            parent.left = nodes[left_val]
+        if right_val:
+            parent.right = nodes[right_val]
+
+    # Корень — это первый посещённый узел
+    root_val = visiting_order[0]
+    return nodes[root_val]
 
 
 if __name__ == "__main__":
@@ -83,3 +125,4 @@ if __name__ == "__main__":
 
     root = get_tree(7)
     walk(root)
+    print(restore_tree("walk_log_4.txt"))

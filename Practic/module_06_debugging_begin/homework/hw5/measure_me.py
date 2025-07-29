@@ -6,17 +6,35 @@
 в начале и в конце которой пишется "Enter measure_me" и "Leave measure_me".
 Сконфигурируйте логгер, запустите программу, соберите логи и посчитайте среднее время выполнения функции measure_me.
 """
+
 import logging
 import random
 from typing import List
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
+
+
+def get_time():
+    result = []
+    with open("measure_stdout.log", "r", encoding="utf-8") as f:
+        for line in f:
+            if "Enter measure_me" in line:
+                time = line.split()[1]
+                start = datetime.strptime(time, "%H:%M:%S,%f")
+            elif "Leave measure_me" in line:
+                time = line.split()[1]
+                end = datetime.strptime(time, "%H:%M:%S,%f")
+
+                result.append((end - start).total_seconds())
+
+    return sum(result) / len(result)
 
 
 def get_data_line(sz: int) -> List[int]:
     try:
         logger.debug("Enter get_data_line")
-        return [random.randint(-(2 ** 31), 2 ** 31 - 1) for _ in range(sz)]
+        return [random.randint(-(2**31), 2**31 - 1) for _ in range(sz)]
     finally:
         logger.debug("Leave get_data_line")
 
@@ -60,7 +78,13 @@ def measure_me(nums: List[int]) -> List[List[int]]:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level="DEBUG")
+    logging.basicConfig(
+        level="DEBUG",
+        filename="measure_stdout.log",
+        encoding="utf-8",
+        format="%(asctime)s [%(levelname)s] %(message)s",
+    )
     for it in range(15):
-        data_line = get_data_line(10 ** 3)
+        data_line = get_data_line(10**2)
         measure_me(data_line)
+    print(get_time())

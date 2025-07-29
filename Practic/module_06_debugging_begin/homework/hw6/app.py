@@ -6,30 +6,50 @@
 список всех доступных страниц на сайте с возможностью перехода на них.
 """
 
-from flask import Flask
+from flask import Flask, url_for
 
 app = Flask(__name__)
 
 
-@app.route('/dogs')
+def has_no_empty_params(rule):
+    defaults = rule.defaults if rule.defaults is not None else ()
+    arguments = rule.arguments if rule.arguments is not None else ()
+    return len(defaults) >= len(arguments)
+
+
+@app.route("/dogs")
 def dogs():
-    return 'Страница с пёсиками'
+    return "Страница с пёсиками"
 
 
-@app.route('/cats')
+@app.route("/cats")
 def cats():
-    return 'Страница с котиками'
+    return "Страница с котиками"
 
 
-@app.route('/cats/<int:cat_id>')
+# @app.route("/cats", defaults={"cat_id": 1})  # по умолчанию url_map не создает пути к ендпоинтам с аргументами (cat_id)
+@app.route("/cats/<int:cat_id>")
 def cat_page(cat_id: int):
-    return f'Страница с котиком {cat_id}'
+    return f"Страница с котиком {cat_id}"
 
 
-@app.route('/index')
+@app.route("/index")
 def index():
-    return 'Главная страница'
+    return "Главная страница"
 
 
-if __name__ == '__main__':
+@app.errorhandler(404)
+def path_site_map(e):
+    links = []
+    for rule in app.url_map.iter_rules():
+
+        if "GET" in rule.methods and has_no_empty_params(rule):
+            url = url_for(
+                rule.endpoint, **(rule.defaults or {})
+            )  # rule.endpoint = имя функции (dogs/cats и т.д.), **rule.defaoul - подставляет значение по умолчанию если оно есть defaults={"cat_id": 1}
+            links.append((f"Нужный URL: {url} | Имя функции: {rule.endpoint}"))
+    return "Страница не найдена. Доступные маршруты:<br>" + "<br>".join(links), 404
+
+
+if __name__ == "__main__":
     app.run(debug=True)
