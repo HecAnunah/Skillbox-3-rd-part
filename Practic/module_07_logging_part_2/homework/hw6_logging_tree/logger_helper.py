@@ -1,11 +1,9 @@
 import logging
+import logging.config
 import sys
-
-"""
-Добавьте handler, который будет писать сообщения разных уровней в соответствующие файлы. 
-Например, сообщения уровня debug попадут в файл `calc_debug.log`, а уровня error — в `calc_error.log`.
-"""
-
+from dict_config import dict_config
+from logging_tree import tree
+from logging_tree import format
 
 class LevelFileHandler(logging.Handler):
     def __init__(
@@ -42,15 +40,12 @@ class LevelFileHandler(logging.Handler):
 
 
 def get_logger(name):
+    logging.config.dictConfig(dict_config)
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
 
-    handler = LevelFileHandler()
-    formatter = logging.Formatter(
-        fmt="%(levelname)s | %(name)s | %(asctime)s | %(lineno)s | %(message)s"
-    )
-    handler.setFormatter(formatter)
+    trees = tree()
 
-    logger.addHandler(handler)
+    with open("logging_tree.txt", "w", encoding="utf-8") as f:
+        f.write(format.build_description(trees))
 
     return logger

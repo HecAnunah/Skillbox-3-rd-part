@@ -26,10 +26,11 @@ class myHandler(logging.Handler):
         # Добавляем новое поле steam_name
         record.stream_name = self._stream_name
         message = self.format(record)
+        print(f' >>>>>>>>>> {record.levelname}')
 
-        # print('Ловим все что есть в рекорд')
-        # for key, value in vars(record).items():
-        #     print(f'{key}: {value}')
+        print('Ловим все что есть в рекорд')
+        for key, value in vars(record).items():
+            print(f'{key}: {value}')
     
         try:
             self.stream.write(message + "\n")

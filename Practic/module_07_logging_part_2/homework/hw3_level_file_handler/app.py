@@ -1,14 +1,15 @@
 import sys
 from utils import string_to_operator
 import logging
+from logger_helper import get_logger
 
-logger = logging.getLogger("calc")
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())
+logger = get_logger("calc")
+
+# Для проверки сменил в некоторых местах info и exceptions на debug и error
 
 
 def calc(args):
-    logger.info("Entering in func <calc>")
+    logger.debug("Entering in func <calc>")
 
     num_1 = args[0]
     operator = args[1]
@@ -17,7 +18,7 @@ def calc(args):
     try:
         num_1 = float(num_1)
     except ValueError as e:
-        logger.exception("Error while converting number 1", exc_info=e)
+        logger.error("Error while converting number 1", exc_info=e)
 
     try:
         num_2 = float(num_2)
@@ -33,6 +34,5 @@ def calc(args):
 
 
 if __name__ == "__main__":
-    # в lounch.json проверка через "args": ["10","+","20"]
-    calc(sys.argv[1:])
-    # calc("2+3")
+    # calc(sys.argv[1:])
+    calc("2+g")

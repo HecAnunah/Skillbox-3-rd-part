@@ -1,6 +1,7 @@
 import logging
+import logging.config
 import sys
-
+from dict_config import dict_config
 """
 Добавьте handler, который будет писать сообщения разных уровней в соответствующие файлы. 
 Например, сообщения уровня debug попадут в файл `calc_debug.log`, а уровня error — в `calc_error.log`.
@@ -42,15 +43,7 @@ class LevelFileHandler(logging.Handler):
 
 
 def get_logger(name):
+    logging.config.dictConfig(dict_config)
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
-
-    handler = LevelFileHandler()
-    formatter = logging.Formatter(
-        fmt="%(levelname)s | %(name)s | %(asctime)s | %(lineno)s | %(message)s"
-    )
-    handler.setFormatter(formatter)
-
-    logger.addHandler(handler)
 
     return logger

@@ -2,9 +2,10 @@ import sys
 from utils import string_to_operator
 import logging
 
+
+logging.basicConfig(level="INFO", stream=sys.stdout, format='%(levelname)s | %(name)s | %(asctime)s | %(lineno)s | %(message)s')
 logger = logging.getLogger("calc")
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())
+
 
 
 def calc(args):
@@ -34,5 +35,5 @@ def calc(args):
 
 if __name__ == "__main__":
     # в lounch.json проверка через "args": ["10","+","20"]
-    calc(sys.argv[1:])
-    # calc("2+3")
+    # calc(sys.argv[1:])
+    calc("2+3")
