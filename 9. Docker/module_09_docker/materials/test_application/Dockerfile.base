@@ -1,0 +1,7 @@
+FROM python:3.7.9-slim-stretch AS base
+
+RUN mkdir /app
+
+COPY requirements.txt /app/
+
+RUN python -m pip install -r /app/requirements.txt
